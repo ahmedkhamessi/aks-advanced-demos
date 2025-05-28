@@ -1,0 +1,138 @@
+<mxfile host="65bd71144e">
+    <diagram name="AKS AppGW CertMgr Architecture Vertical" id="0">
+        <mxGraphModel dx="1630" dy="753" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="1600" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="Client" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="540" y="60" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="AFD" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+                    <mxGeometry x="410" y="270" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="App Gateway" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+                    <mxGeometry x="860" y="270" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="App Gateway (for Containers)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+                    <mxGeometry x="570" y="270" width="180" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="AKS + KV Secret Store Provider" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+                    <mxGeometry x="380" y="410" width="470" height="240" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="Ingress" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="540" y="430" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="Pod1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+                    <mxGeometry x="400" y="560" width="80" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="Pod2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+                    <mxGeometry x="700" y="570" width="80" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="CA" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+                    <mxGeometry x="70" y="480" width="80" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="Cert Manager" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="180" y="480" width="120" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="AKV" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="200" y="340" width="80" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="HTTPS" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;strokeColor=#0000ff;" parent="1" source="2" target="3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="HTTPS" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;strokeColor=#0000ff;" parent="1" source="2" target="4" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="600" y="180" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="15" value="HTTPS (Termination)" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;strokeColor=#0000ff;" parent="1" source="3" target="5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="HTTPS (Termination)" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;strokeColor=#0000ff;" parent="1" source="4" target="5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="HTTPS (New session)" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;strokeColor=#0000ff;" parent="1" source="5" target="6" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="630" y="410"/>
+                            <mxPoint x="630" y="410"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="19" value="Pull/Rotation" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;strokeColor=#008000;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=-0.087;exitY=0.484;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="12" target="3" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="110" y="320" as="sourcePoint"/>
+                        <Array as="points">
+                            <mxPoint x="150" y="359"/>
+                            <mxPoint x="150" y="290"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="20" value="Pull" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;strokeColor=#008000;" parent="1" source="12" target="6" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="560" y="360"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="22" value="HTTP" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;strokeColor=#ff9900;" parent="1" source="6" target="8" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="HTTP" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;strokeColor=#ff9900;" parent="1" source="6" target="9" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="MTLS" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;strokeColor=#008000;" parent="1" source="7" target="8" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" value="MTLS" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;strokeColor=#008000;" parent="1" source="7" target="9" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="27" value="Ingress pulls certs from Key Vault for TLS termination" style="note;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="890" y="430" width="200" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" value="AKS uses KV Secret Store Provider" style="note;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="520" y="690" width="180" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="HTTPS" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;strokeColor=#0000ff;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="2" target="5">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="930" y="280" as="targetPoint"/>
+                        <mxPoint x="670" y="90" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="30" value="Pull" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;strokeColor=#008000;" edge="1" parent="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="300" y="523" as="sourcePoint"/>
+                        <mxPoint x="540" y="440" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="330" y="523"/>
+                            <mxPoint x="330" y="370"/>
+                            <mxPoint x="510" y="370"/>
+                            <mxPoint x="510" y="440"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="31" value="Pull" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;strokeColor=#008000;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="10" target="12">
+                    <mxGeometry x="0.2" y="-10" relative="1" as="geometry">
+                        <mxPoint x="110" y="470" as="sourcePoint"/>
+                        <mxPoint x="570" y="440" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="110" y="410"/>
+                            <mxPoint x="240" y="410"/>
+                        </Array>
+                        <mxPoint x="-10" y="-10" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="32" value="Pull" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;strokeColor=#008000;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="11">
+                    <mxGeometry x="0.2" y="-10" relative="1" as="geometry">
+                        <mxPoint x="120" y="490" as="sourcePoint"/>
+                        <mxPoint x="250" y="390" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="250" y="480"/>
+                        </Array>
+                        <mxPoint x="-10" y="-10" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

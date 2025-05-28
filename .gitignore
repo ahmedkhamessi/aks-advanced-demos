@@ -1,0 +1,35 @@
+# .NET build artifacts
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+dist/
+.env
+.env.*
+
+# Visual Studio Code
+.vscode/
+.history/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Others
+*.swp
+*.tmp
+
+# Helm
+*.tgz
+Chart.lock
+charts/

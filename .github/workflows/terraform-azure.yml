@@ -1,0 +1,62 @@
+# This GitHub Actions workflow deploys Azure resources using Terraform and a federated managed identity.
+# It assumes a user-assigned managed identity with federated credentials is already configured in Azure.
+# Update the environment variables as needed for your environment.
+
+name: 'Terraform Deploy to Azure AKS'
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/terraform-azure.yml'
+      - 'ClusterSetup/**.tf'
+      - 'ClusterSetup/**.tfvars'
+      - 'ClusterSetup/**.tfbackend'
+      - 'ClusterSetup/**.tf.json'
+      - 'ClusterSetup/**.tfvars.json'
+  
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: dev
+    env:
+      ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+      ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      ARM_USE_OIDC: true
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.7.5
+
+      - name: Azure Login with OIDC
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          allow-no-subscriptions: true
+
+      - name: Terraform Init
+        run: terraform init
+        working-directory: ./ClusterSetup
+
+      - name: Terraform Validate
+        run: terraform validate
+        working-directory: ./ClusterSetup
+
+      - name: Terraform Plan
+        run: terraform plan -out=tfplan
+        working-directory: ./ClusterSetup
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve tfplan
+        working-directory: ./ClusterSetup
